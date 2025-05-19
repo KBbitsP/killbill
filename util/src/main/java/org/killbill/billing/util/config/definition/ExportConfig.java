@@ -1,6 +1,6 @@
 /*
- * Copyright 2014-2018 Groupon, Inc
- * Copyright 2014-2018 The Billing Project, LLC
+ * Copyright 2020-2025 Equinix, Inc
+ * Copyright 2014-2025 The Billing Project, LLC
  *
  * The Billing Project licenses this file to you under the Apache License, version 2.0
  * (the "License"); you may not use this file except in compliance with the
@@ -15,13 +15,19 @@
  * under the License.
  */
 
-package org.killbill.billing.catalog.api;
+package org.killbill.billing.util.config.definition;
 
-import org.killbill.billing.callcontext.InternalTenantContext;
+import java.util.List;
 
-public interface CatalogInternalApi {
+import org.skife.config.Config;
+import org.skife.config.Default;
+import org.skife.config.Description;
 
-    public VersionedCatalog getFullCatalog(boolean useDefaultCatalog, final boolean filterTemplateCatalog, InternalTenantContext context) throws CatalogApiException;
+public interface ExportConfig extends KillbillConfig {
 
-    public PriceOverrideSvcStatus getPriceOverrideSvcStatus();
+    @Config("org.killbill.export.extra.tables.prefix")
+    @Default("aviate_catalog")
+    @Description("Prefix of the extra tables that need to be imported")
+    List<String> getExtraTablesPrefix();
+
 }
